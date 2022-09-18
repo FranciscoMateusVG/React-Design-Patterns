@@ -1,7 +1,15 @@
 import React from 'react'
 import Students from '../StudentsUi'
 
-const withStudents = (count) => (Component) => {
+function StudentsRenderProps() {
+  return (
+    <StudentWithRenderProps>
+      {({ students }) => <Students students={students} />}
+    </StudentWithRenderProps>
+  )
+}
+
+const StudentWithRenderProps = (props) => {
   const students = [
     { name: 'John', score: 'A-' },
     { name: 'Samuel', score: 'B-' },
@@ -10,11 +18,9 @@ const withStudents = (count) => (Component) => {
     { name: 'Mike', score: 'B-' },
     { name: 'John', score: 'B+' }
   ]
-  const listStudentsLimited = students.slice(0, count)
-  return () => <Component students={listStudentsLimited}></Component>
+  return props.children({
+    students
+  })
 }
-const maxStudentCount = 3
 
-const StudentsComplex = withStudents(maxStudentCount)(Students)
-
-export default StudentsComplex
+export default StudentsRenderProps

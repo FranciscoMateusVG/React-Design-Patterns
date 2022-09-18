@@ -1,5 +1,5 @@
 import React from 'react'
-import Students from './StudentsUi'
+import Students from '../StudentsUi'
 
 const withStudents = (Component) => {
   const students = [
